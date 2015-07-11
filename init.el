@@ -1,0 +1,153 @@
+;;; package --- summary
+
+;;; Commentary:
+
+;;; Code:
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(setq initial-scratch-message "")
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
+
+;; This replaces, rather than appends, on `yank'
+(delete-selection-mode)
+
+;; Use MELPA
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+(defun install-if-not-present (package)
+  "Install package (as PACKAGE) if it's not already installed."
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(install-if-not-present 'cider)
+(install-if-not-present 'ac-cider)
+(install-if-not-present 'projectile)
+(install-if-not-present 'flx-ido)
+;; I can't decide between paredit and smartparens at the moment, so I have both installed.
+(install-if-not-present 'smartparens)
+(install-if-not-present 'paredit)
+(install-if-not-present 'flycheck-clojure)
+(install-if-not-present 'ace-jump-mode)
+(install-if-not-present 'base16-theme)
+(install-if-not-present 'rainbow-delimiters)
+(install-if-not-present 'git-gutter+)
+(install-if-not-present 'diminish)
+
+;; I like paredit in my eval minibuffer
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+
+(defun remove-annoying-bindings ()
+  "This undefines some key bindings that I find irritating."
+  (global-unset-key (kbd "C-z"))
+  (define-key global-map [(insert)] nil))
+
+(remove-annoying-bindings)
+
+(eval-after-load 'flycheck '(flycheck-clojure-setup))
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+                   '(setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
+
+(defun my-clojure-mode-setup ()
+  "My custom clojure hook."
+  (projectile-mode)
+  (require 'smartparens-config)
+  (smartparens-strict-mode)
+  (rainbow-delimiters-mode)
+  (diminish 'projectile-mode "proj")
+  (diminish 'cider-mode "cider")
+  (diminish 'git-gutter+-mode "GG"))
+
+(add-hook 'clojure-mode-hook #'my-clojure-mode-setup)
+
+(defun my-emacs-lisp-mode-setup ()	;
+  "My custom Emacs Lisp mode hook."
+  (require 'smartparens-config)
+  (smartparens-strict-mode)
+  (rainbow-delimiters-mode)
+  (defvar cider-interactive-eval-result-prefix)
+  (setq cider-interactive-eval-result-prefix ";; => ")
+  (defvar cider-repl-pop-to-buffer-on-connect)
+  (setq cider-repl-pop-to-buffer-on-connect nil))
+
+(add-hook 'emacs-lisp-mode-hook #'my-emacs-lisp-mode-setup)
+
+(flx-ido-mode)
+(global-auto-complete-mode)
+
+(eval-after-load 'git-gutter+
+  '(progn
+     ;;; Jump between hunks
+     (define-key git-gutter+-mode-map (kbd "C-x n") 'git-gutter+-next-hunk)
+     (define-key git-gutter+-mode-map (kbd "C-x p") 'git-gutter+-previous-hunk)
+
+     ;;; Act on hunks
+     (define-key git-gutter+-mode-map (kbd "C-x v =") 'git-gutter+-show-hunk)
+     (define-key git-gutter+-mode-map (kbd "C-x r") 'git-gutter+-revert-hunks)
+     ;; Stage hunk at point.
+     ;; If region is active, stage all hunk lines within the region.
+     (define-key git-gutter+-mode-map (kbd "C-x t") 'git-gutter+-stage-hunks)
+     (define-key git-gutter+-mode-map (kbd "C-x c") 'git-gutter+-commit)
+     (define-key git-gutter+-mode-map (kbd "C-x C") 'git-gutter+-stage-and-commit)
+     (define-key git-gutter+-mode-map (kbd "C-x C-y") 'git-gutter+-stage-and-commit-whole-buffer)
+     (define-key git-gutter+-mode-map (kbd "C-x U") 'git-gutter+-unstage-whole-buffer)))
+
+(global-git-gutter+-mode)
+
+(global-set-key (kbd "C-;") 'ace-jump-word-mode)
+(global-set-key (kbd "C-:") 'ace-jump-line-mode)
+(global-set-key (kbd "C-c b") 'ace-jump-buffer)
+
+(global-set-key (kbd "s-b") 'bookmark-bmenu-list)
+(global-set-key (kbd "s-s") 'bookmark-set)
+
+;;(require 'ac-cider)
+;;(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+;;(add-hook 'cider-mode-hook 'ac-cider-setup)
+;;(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+;;(eval-after-load "auto-complete"
+ ;; '(progn
+  ;;   (add-to-list 'ac-modes 'cider-mode)
+   ;;  (add-to-list 'ac-modes 'cider-repl-mode)))
+
+(defun quit-other-window ()
+  "Switch to the other window and quit, then switch back."
+  (interactive)
+  (other-window 1)
+  (quit-window 1)
+  (other-window 1))
+
+(global-set-key (kbd "s-q") 'quit-other-window)
+
+(defun set-auto-complete-as-completion-at-point-function ()
+  "."
+  (setq completion-at-point-functions '(auto-complete)))
+
+;;(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+;;(add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
+
+(custom-set-variables
+ '(custom-enabled-themes (quote (base16-tomorrow-dark)))
+ '(custom-safe-themes (quote ("75c0b1d2528f1bce72f53344939da57e290aa34bea79f3a1ee19d6808cb55149" default)))
+ '(custom-theme-directory "~/.emacs.d/themes/")
+
+ '(default-frame-alist (quote ((vertical-scroll-bars) (font . "Inconsolata for Powerline 12"))))
+ '(sp-base-key-bindings (quote paredit)))
+
+;; I would like to always use y or n, instead of yes or no
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; I would always like to save my history
+(savehist-mode 1)
+
+;;; init.el ends here
+
