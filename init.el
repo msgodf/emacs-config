@@ -57,8 +57,7 @@
 (defun my-clojure-mode-setup ()
   "My custom clojure hook."
   (projectile-mode)
-  (require 'smartparens-config)
-  (smartparens-strict-mode)
+  (paredit-mode)
   (rainbow-delimiters-mode)
   (diminish 'projectile-mode "proj")
   (diminish 'cider-mode "cider")
