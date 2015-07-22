@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+;; UI configuration.
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -11,7 +12,7 @@
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
 
-;; This replaces, rather than appends, on `yank'
+;; This replaces, rather than appends, on `yank`
 (delete-selection-mode)
 
 ;; Use MELPA
@@ -29,7 +30,7 @@
 (install-if-not-present 'ac-cider)
 (install-if-not-present 'projectile)
 (install-if-not-present 'flx-ido)
-;; I can't decide between paredit and smartparens at the moment, so I have both installed.
+;; I'm installing smartparens for when I'm writing in non-Lisp languages.
 (install-if-not-present 'smartparens)
 (install-if-not-present 'paredit)
 (install-if-not-present 'flycheck-clojure)
@@ -61,19 +62,18 @@
   (rainbow-delimiters-mode)
   (diminish 'projectile-mode "proj")
   (diminish 'cider-mode "cider")
-  (diminish 'git-gutter+-mode "GG"))
+  (diminish 'git-gutter+-mode "GG")
+  (defvar cider-interactive-eval-result-prefix)
+  (setq cider-interactive-eval-result-prefix ";; => ")
+  (defvar cider-repl-pop-to-buffer-on-connect)
+  (setq cider-repl-pop-to-buffer-on-connect nil))
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-setup)
 
 (defun my-emacs-lisp-mode-setup ()	;
   "My custom Emacs Lisp mode hook."
-  (require 'smartparens-config)
-  (smartparens-strict-mode)
-  (rainbow-delimiters-mode)
-  (defvar cider-interactive-eval-result-prefix)
-  (setq cider-interactive-eval-result-prefix ";; => ")
-  (defvar cider-repl-pop-to-buffer-on-connect)
-  (setq cider-repl-pop-to-buffer-on-connect nil))
+  (paredit-mode)
+  (rainbow-delimiters-mode))
 
 (add-hook 'emacs-lisp-mode-hook #'my-emacs-lisp-mode-setup)
 
@@ -106,15 +106,6 @@
 (global-set-key (kbd "s-b") 'bookmark-bmenu-list)
 (global-set-key (kbd "s-s") 'bookmark-set)
 
-;;(require 'ac-cider)
-;;(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-;;(add-hook 'cider-mode-hook 'ac-cider-setup)
-;;(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-;;(eval-after-load "auto-complete"
- ;; '(progn
-  ;;   (add-to-list 'ac-modes 'cider-mode)
-   ;;  (add-to-list 'ac-modes 'cider-repl-mode)))
-
 (defun quit-other-window ()
   "Switch to the other window and quit, then switch back."
   (interactive)
@@ -128,11 +119,16 @@
   "."
   (setq completion-at-point-functions '(auto-complete)))
 
-;;(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
-;;(add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
-
 (add-hook 'cider-repl-mode-hook #'company-mode)
 (add-hook 'cider-mode-hook #'company-mode)
+
+;; bindings for windmove
+(global-set-key [C-s-up] 'windmove-up)
+(global-set-key [C-s-down] 'windmove-down)
+(global-set-key [C-s-left] 'windmove-left)
+(global-set-key [C-s-right] 'windmove-right)
+
+(global-set-key [s-g] 'magit-status)
 
 (custom-set-variables
  '(custom-enabled-themes (quote (base16-tomorrow-dark)))
@@ -144,6 +140,9 @@
 
 ;; I would like to always use y or n, instead of yes or no
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; I like trailing whitespace to be highlighted.
+(set 'show-trailing-whitespace t)
 
 ;; I would always like to save my history
 (savehist-mode 1)
