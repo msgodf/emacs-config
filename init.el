@@ -44,6 +44,7 @@
 (install-if-not-present 'git-gutter+)
 (install-if-not-present 'diminish)
 (install-if-not-present 'magit)
+(install-if-not-present 'markdown-mode)
 
 ;; I want to use Elm
 (install-if-not-present 'elm-mode)
