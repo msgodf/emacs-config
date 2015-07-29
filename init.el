@@ -25,19 +25,31 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+;; Get list of packages
+(package-refresh-contents)
+
 (install-if-not-present 'cider)
 (install-if-not-present 'ac-cider)
+(install-if-not-present 'clj-refactor)
 (install-if-not-present 'projectile)
 (install-if-not-present 'flx-ido)
 ;; I can't decide between paredit and smartparens at the moment, so I have both installed.
 (install-if-not-present 'smartparens)
 (install-if-not-present 'paredit)
 (install-if-not-present 'flycheck-clojure)
+(install-if-not-present 'flycheck-pos-tip)
 (install-if-not-present 'ace-jump-mode)
 (install-if-not-present 'base16-theme)
 (install-if-not-present 'rainbow-delimiters)
 (install-if-not-present 'git-gutter+)
 (install-if-not-present 'diminish)
+(install-if-not-present 'magit)
+
+;; I want to use Elm
+(install-if-not-present 'elm-mode)
+
+;; I want to use SML
+(install-if-not-present 'sml-mode)
 
 ;; I like paredit in my eval minibuffer
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
