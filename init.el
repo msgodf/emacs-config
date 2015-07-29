@@ -148,5 +148,9 @@
 ;; I would always like to save my history
 (savehist-mode 1)
 
+;; I have a script that builds a new index.html and opens it in Chrome
+(defvar elm-make-command)
+(set 'elm-make-command "~/.bin/elm-make-and-show")
+
 ;;; init.el ends here
 
