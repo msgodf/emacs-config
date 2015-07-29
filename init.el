@@ -143,8 +143,9 @@
  '(custom-enabled-themes (quote (base16-tomorrow-dark)))
  '(custom-safe-themes (quote ("75c0b1d2528f1bce72f53344939da57e290aa34bea79f3a1ee19d6808cb55149" default)))
  '(custom-theme-directory "~/.emacs.d/themes/")
-
- '(default-frame-alist (quote ((vertical-scroll-bars) (font . "Inconsolata for Powerline 12"))))
+ 
+ '(default-frame-alist (quote ((vertical-scroll-bars)
+			       (font . "Inconsolata"))))
  '(sp-base-key-bindings (quote paredit)))
 
 ;; I would like to always use y or n, instead of yes or no
