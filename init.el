@@ -70,6 +70,11 @@
   (projectile-mode)
   (paredit-mode)
   (rainbow-delimiters-mode)
+  (clj-refactor-mode)
+  (defvar cider-interactive-eval-result-prefix)
+  (setq cider-interactive-eval-result-prefix ";; => ")
+  (defvar cider-repl-pop-to-buffer-on-connect)
+  (setq cider-repl-pop-to-buffer-on-connect nil)
   (diminish 'projectile-mode "proj")
   (diminish 'cider-mode "cider")
   (diminish 'git-gutter+-mode "GG"))
@@ -80,11 +85,7 @@
   "My custom Emacs Lisp mode hook."
   (require 'smartparens-config)
   (smartparens-strict-mode)
-  (rainbow-delimiters-mode)
-  (defvar cider-interactive-eval-result-prefix)
-  (setq cider-interactive-eval-result-prefix ";; => ")
-  (defvar cider-repl-pop-to-buffer-on-connect)
-  (setq cider-repl-pop-to-buffer-on-connect nil))
+  (rainbow-delimiters-mode))
 
 (add-hook 'emacs-lisp-mode-hook #'my-emacs-lisp-mode-setup)
 
