@@ -42,12 +42,23 @@
 ;; I like paredit in my eval minibuffer
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 
-(defun remove-annoying-bindings ()
+(defun setup-my-global-bindings ()
   "This undefines some key bindings that I find irritating."
   (global-unset-key (kbd "C-z"))
-  (define-key global-map [(insert)] nil))
+  (define-key global-map [(insert)] nil)
+  ;; Ace Jump
+  (global-set-key (kbd "C-;") 'ace-jump-word-mode)
+  (global-set-key (kbd "C-:") 'ace-jump-line-mode)
+  (global-set-key (kbd "C-c b") 'ace-jump-buffer)
+  ;; Bookmarks
+  (global-set-key (kbd "s-b") 'bookmark-bmenu-list)
+  (global-set-key (kbd "s-s") 'bookmark-set)
+  ;; Magit status
+  (global-set-key (kbd "s-.") 'magit-status)
+  ;; Because @ is elsewhere on OS X and I'm trained to hit this to mark sexps
+  (global-set-key (kbd "C-M-\"") 'mark-sexp))
 
-(remove-annoying-bindings)
+(setup-my-global-bindings)
 
 (eval-after-load 'flycheck '(flycheck-clojure-setup))
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -98,13 +109,6 @@
      (define-key git-gutter+-mode-map (kbd "C-x U") 'git-gutter+-unstage-whole-buffer)))
 
 (global-git-gutter+-mode)
-
-(global-set-key (kbd "C-;") 'ace-jump-word-mode)
-(global-set-key (kbd "C-:") 'ace-jump-line-mode)
-(global-set-key (kbd "C-c b") 'ace-jump-buffer)
-
-(global-set-key (kbd "s-b") 'bookmark-bmenu-list)
-(global-set-key (kbd "s-s") 'bookmark-set)
 
 ;;(require 'ac-cider)
 ;;(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
