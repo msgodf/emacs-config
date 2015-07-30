@@ -150,6 +150,9 @@
 (add-hook 'cider-repl-mode-hook #'company-mode)
 (add-hook 'cider-mode-hook #'company-mode)
 
+;; Remove trailing whitespace before saving the file
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 (custom-set-variables
  '(custom-enabled-themes (quote (base16-tomorrow-dark)))
  '(custom-safe-themes (quote ("75c0b1d2528f1bce72f53344939da57e290aa34bea79f3a1ee19d6808cb55149" default)))
