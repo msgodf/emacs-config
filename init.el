@@ -30,6 +30,7 @@
 
 (install-if-not-present 'cider)
 (install-if-not-present 'ac-cider)
+(install-if-not-present 'company)
 (install-if-not-present 'clj-refactor)
 (install-if-not-present 'projectile)
 (install-if-not-present 'flx-ido)
