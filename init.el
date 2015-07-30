@@ -102,7 +102,12 @@
 
 (add-hook 'emacs-lisp-mode-hook #'my-emacs-lisp-mode-setup)
 
-(flx-ido-mode)
+;; Enable flx-ido
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+
 (global-auto-complete-mode)
 
 (eval-after-load 'git-gutter+
