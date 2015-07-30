@@ -89,8 +89,10 @@
   (cljr-add-keybindings-with-prefix "C-c C-m")
   (defvar cider-interactive-eval-result-prefix)
   (setq cider-interactive-eval-result-prefix ";; => ")
+  ;; Don't open a buffer for the REPL on connection
   (defvar cider-repl-pop-to-buffer-on-connect)
   (setq cider-repl-pop-to-buffer-on-connect nil)
+  ;; dimish changes the text for modes in the modeline.
   (diminish 'projectile-mode "proj")
   (diminish 'cider-mode "cider")
   (diminish 'git-gutter+-mode "GG"))
