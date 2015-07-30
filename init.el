@@ -85,6 +85,8 @@
   (paredit-mode)
   (rainbow-delimiters-mode)
   (clj-refactor-mode)
+    ;; Binding for clj-refactor-mode
+  (cljr-add-keybindings-with-prefix "C-c C-m")
   (defvar cider-interactive-eval-result-prefix)
   (setq cider-interactive-eval-result-prefix ";; => ")
   (defvar cider-repl-pop-to-buffer-on-connect)
