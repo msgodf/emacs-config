@@ -26,8 +26,6 @@
     (package-install package)))
 
 ;; Get list of packages
-(package-refresh-contents)
-
 (install-if-not-present 'cider)
 (install-if-not-present 'ac-cider)
 (install-if-not-present 'company)
