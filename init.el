@@ -170,5 +170,7 @@
 (defvar elm-make-command)
 (set 'elm-make-command "~/.bin/elm-make-and-show")
 
-;;; init.el ends here
+;; I like buffers to be auto-reverted if they've changed on disk
+(auto-revert-mode)
 
+;;; init.el ends here
