@@ -44,6 +44,7 @@
 (install-if-not-present 'diminish)
 (install-if-not-present 'magit)
 (install-if-not-present 'markdown-mode)
+(install-if-not-present 'undo-tree)
 
 ;; I want to use Elm
 (install-if-not-present 'elm-mode)
