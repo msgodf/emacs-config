@@ -15,36 +15,42 @@ Standard ML.
 I'll try to keep this in sync with `init.el`, but it might not always be
 up-to-date.
 
-[CIDER](https://github.com/clojure-emacs/cider)
-
 [ac-cider](https://github.com/clojure-emacs/ac-cider)
-
-[clj-refactor](https://github.com/clojure-emacs/clj-refactor.el)
-
-[projectile](https://github.com/bbatsov/projectile)
-
-[flx-ido](https://github.com/lewang/flx)
-
-[smartparens](https://github.com/Fuco1/smartparens)
-
-[paredit](https://github.com/emacsmirror/paredit)
-
-[flycheck-clojure](https://github.com/clojure-emacs/squiggly-clojure)
-
-[flycheck-pos-tip](https://github.com/flycheck/flycheck-pos-tip)
 
 [ace-jump-mode](https://github.com/winterTTr/ace-jump-mode)
 
 [base16-theme](https://github.com/mkaito/base16-emacs)
 
-[rainbow-delimiters](https://github.com/Fanael/rainbow-delimiters)
+[CIDER](https://github.com/clojure-emacs/cider)
 
-[git-gutter+](https://github.com/nonsequitur/git-gutter-plus)
+[clj-refactor](https://github.com/clojure-emacs/clj-refactor.el)
+
+[company](http://company-mode.github.io)
 
 [diminish](http://www.emacswiki.org/emacs/DiminishedModes)
 
-[magit](https://github.com/magit/magit)
-
 [elm-mode](https://github.com/jcollard/elm-mode)
 
+[flx-ido](https://github.com/lewang/flx)
+
+[flycheck-clojure](https://github.com/clojure-emacs/squiggly-clojure)
+
+[flycheck-pos-tip](https://github.com/flycheck/flycheck-pos-tip)
+
+[git-gutter+](https://github.com/nonsequitur/git-gutter-plus)
+
+[magit](https://github.com/magit/magit)
+
+[markdown-mode](http://jblevins.org/projects/markdown-mode/)
+
+[paredit](https://github.com/emacsmirror/paredit)
+
+[projectile](https://github.com/bbatsov/projectile)
+
+[rainbow-delimiters](https://github.com/Fanael/rainbow-delimiters)
+
 [sml-mode](http://www.smlnj.org/doc/Emacs/sml-mode.html)
+
+[typed-clojure-mode](https://github.com/typedclojure/typed-clojure-mode)
+
+[undo-tree](http://www.dr-qubit.org/emacs.php#undo-tree)
