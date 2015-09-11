@@ -33,8 +33,6 @@
 (install-if-not-present 'clj-refactor)
 (install-if-not-present 'projectile)
 (install-if-not-present 'flx-ido)
-;; I can't decide between paredit and smartparens at the moment, so I have both installed.
-(install-if-not-present 'smartparens)
 (install-if-not-present 'paredit)
 (install-if-not-present 'flycheck-clojure)
 (install-if-not-present 'flycheck-pos-tip)
