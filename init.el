@@ -56,7 +56,7 @@
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 
 (defun setup-my-global-bindings ()
-  "This undefines some key bindings that I find irritating."
+  "Setup the bindings that I find useful, and unset some that I don't."
   (global-unset-key (kbd "C-z"))
   (define-key global-map [(insert)] nil)
   ;; Ace Jump
@@ -69,7 +69,12 @@
   ;; Magit status
   (global-set-key (kbd "s-.") 'magit-status)
   ;; Because @ is elsewhere on OS X and I'm trained to hit this to mark sexps
-  (global-set-key (kbd "C-M-\"") 'mark-sexp))
+  (global-set-key (kbd "C-M-\"") 'mark-sexp)
+  ;; Windmove is built in but doesn't have bindings - I've chosen these Vim-like ones
+  (global-set-key (kbd "C-c h") 'windmove-left)
+  (global-set-key (kbd "C-c j") 'windmove-up)
+  (global-set-key (kbd "C-c k") 'windmove-down)
+  (global-set-key (kbd "C-c l") 'windmove-right))
 
 (setup-my-global-bindings)
 
