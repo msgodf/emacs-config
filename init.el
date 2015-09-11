@@ -28,6 +28,7 @@
 ;; Get list of packages
 (install-if-not-present 'cider)
 (install-if-not-present 'ac-cider)
+(install-if-not-present 'typed-clojure-mode)
 (install-if-not-present 'company)
 (install-if-not-present 'clj-refactor)
 (install-if-not-present 'projectile)
@@ -89,6 +90,7 @@
   (paredit-mode)
   (rainbow-delimiters-mode)
   (clj-refactor-mode)
+  (typed-clojure-mode)
     ;; Binding for clj-refactor-mode
   (cljr-add-keybindings-with-prefix "C-c C-m")
   (defvar cider-interactive-eval-result-prefix)
