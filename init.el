@@ -174,4 +174,6 @@
 ;; I like buffers to be auto-reverted if they've changed on disk
 (global-auto-revert-mode)
 
+(column-number-mode)
+
 ;;; init.el ends here
